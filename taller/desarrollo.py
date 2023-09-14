@@ -77,10 +77,9 @@ c_2 = Conjunto("Números Enteros")
 c_2.agregar_elemento(e_3)
 c_2.agregar_elemento(e_2)
 
-# Impresión de los conjuntos
+# print de los conjuntos
 print(c_1)
 print(c_2)
-
 
 # unir y print
 union = c_1 + c_2
