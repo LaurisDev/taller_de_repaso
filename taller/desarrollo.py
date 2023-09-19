@@ -23,35 +23,29 @@ class Conjunto:
         return self._id
 
     def contiene(self, elemento) -> bool:
-        if isinstance(elemento, Elemento):
-            for elem in self.elementos:
-                if elem.nombre == elemento.nombre:
-                    return True
-        return False
+        for elem in self.elementos:
+            if elem.nombre == elemento.nombre:
+                return True
 
     def agregar_elemento(self, elemento):
-        if isinstance(elemento, Elemento):
-            if not self.contiene(elemento):
-                self.elementos.append(elemento)
-                return True
-        return False
+        if not self.contiene(elemento):
+            self.elementos.append(elemento)
+            return True
 
     def unir(self, otro_conjunto):
-        if isinstance(otro_conjunto, Conjunto):
-            for elemento in otro_conjunto.elementos:
-                if not self.contiene(elemento):
-                    self.elementos.append(elemento)
+        for elemento in otro_conjunto.elementos:
+            if not self.contiene(elemento):
+                self.elementos.append(elemento)
 
     def __add__(self, otro_conjunto):
-        if isinstance(otro_conjunto, Conjunto):
-            conjunto_2 = Conjunto(f"{self.nombre}_{otro_conjunto.nombre}")
-            conjunto_2.elementos = self.elementos.copy()
-            conjunto_2.unir(otro_conjunto)
-            return conjunto_2
+        conjunto_2 = Conjunto(f"{self.nombre}_{otro_conjunto.nombre}")
+        conjunto_2.elementos = self.elementos.copy()
+        conjunto_2.unir(otro_conjunto)
+        return conjunto_2
 
     @classmethod
     def intersectar(cls, conjunto, otro_conjunto):
-        if isinstance(conjunto, Conjunto) and isinstance(otro_conjunto, Conjunto):
+        if (conjunto, Conjunto) and (otro_conjunto, Conjunto):
             interseccion_elementos = [elem for elem in conjunto.elementos if otro_conjunto.contiene(elem)]
             interseccion_nombre = f"{conjunto.nombre} INTERSECTADO {otro_conjunto.nombre}"
             interseccion_conjunto = Conjunto(interseccion_nombre)
